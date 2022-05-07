@@ -1,4 +1,4 @@
-package com.derekfleming.sportsbetchallenge.api.transaction.dto;
+package com.derekfleming.sportsbetchallenge.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

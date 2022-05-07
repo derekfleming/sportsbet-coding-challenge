@@ -1,7 +1,7 @@
-package com.derekfleming.sportsbetchallenge.api.transaction;
+package com.derekfleming.sportsbetchallenge.api;
 
-import com.derekfleming.sportsbetchallenge.api.transaction.dto.TransactionRequest;
-import com.derekfleming.sportsbetchallenge.api.transaction.dto.TransactionResponse;
+import com.derekfleming.sportsbetchallenge.api.dto.TransactionRequest;
+import com.derekfleming.sportsbetchallenge.api.dto.TransactionResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -43,22 +43,21 @@ class TransactionControllerTest {
 
         assertEquals(expected, actual);
     }
-}
 
+    static class ValidArgumentsProvider implements ArgumentsProvider {
 
-class ValidArgumentsProvider implements ArgumentsProvider {
-
-    @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
-        return Stream.of(
-                Arguments.of(
-                        TransactionRequest.builder()
-                                .transactionId(1)
-                                .customers(List.of())
-                                .build(),
-                        TransactionResponse.builder()
-                                .transactionId(1)
-                                .build())
-        );
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
+            return Stream.of(
+                    Arguments.of(
+                            TransactionRequest.builder()
+                                    .transactionId(1)
+                                    .customers(List.of())
+                                    .build(),
+                            TransactionResponse.builder()
+                                    .transactionId(1)
+                                    .build())
+            );
+        }
     }
 }
