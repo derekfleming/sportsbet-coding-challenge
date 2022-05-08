@@ -25,4 +25,5 @@ sportsbet-coding-challenge
 
 ### Limitations
 
-- Extensive error handling has not been implemented, the app will generally just return empty for simple invalid data (e.g negative ages, missing data, etc.)
+- Extensive error handling has not been implemented, the app will generally return empty for simple invalid data (e.g negative ages, missing data, etc.)
+  - Unexpected exceptions will be handled by Spring's default implementation
