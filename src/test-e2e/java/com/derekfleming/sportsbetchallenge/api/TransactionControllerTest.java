@@ -33,7 +33,7 @@ class TransactionControllerTest {
 
     @ParameterizedTest
     @MethodSource("validArguments")
-    public void controllerReturnsExpectedResponse(TransactionRequest input, TransactionResponse expected) throws Exception {
+    public void shouldReturnExpectedResponse(TransactionRequest input, TransactionResponse expected) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
 
         MvcResult mvcResult = mockMvc.perform(
@@ -92,8 +92,101 @@ class TransactionControllerTest {
                                                 .build()
                                 ))
                                 .totalCost(27.5)
+                                .build()),
+                Arguments.of(
+                        TransactionRequest.builder()
+                                .transactionId(2)
+                                .customers(List.of(
+                                        CustomerDto.builder()
+                                                .age(36)
+                                                .name("Billy Kidd")
+                                                .build(),
+                                        CustomerDto.builder()
+                                                .age(3)
+                                                .name("Zoe Daniels")
+                                                .build(),
+                                        CustomerDto.builder()
+                                                .name("George White")
+                                                .age(8)
+                                                .build(),
+                                        CustomerDto.builder()
+                                                .name("Tommy Anderson")
+                                                .age(9)
+                                                .build(),
+                                        CustomerDto.builder()
+                                                .name("Joe Smith")
+                                                .age(17)
+                                                .build()))
+                                .build(),
+                        TransactionResponse.builder()
+                                .transactionId(2)
+                                .tickets(List.of(
+                                        TicketDto.builder()
+                                                .ticketType("Adult")
+                                                .quantity(1)
+                                                .totalCost(25.0)
+                                                .build(),
+                                        TicketDto.builder()
+                                                .ticketType("Children")
+                                                .quantity(3)
+                                                .totalCost(11.25)
+                                                .build(),
+                                        TicketDto.builder()
+                                                .ticketType("Teen")
+                                                .quantity(1)
+                                                .totalCost(12.0)
+                                                .build()
+                                ))
+                                .totalCost(48.25)
+                                .build()),
+                Arguments.of(
+                        TransactionRequest.builder()
+                                .transactionId(3)
+                                .customers(List.of(
+                                        CustomerDto.builder()
+                                                .name("Jesse James")
+                                                .age(36)
+                                                .build(),
+                                        CustomerDto.builder()
+                                                .name("Daniel Anderson")
+                                                .age(95)
+                                                .build(),
+                                        CustomerDto.builder()
+                                                .name("Mary Jones")
+                                                .age(15)
+                                                .build(),
+                                        CustomerDto.builder()
+                                                .name("Michelle Parker")
+                                                .age(10)
+                                                .build()
+                                ))
+                                .build(),
+                        TransactionResponse.builder()
+                                .transactionId(3)
+                                .tickets(List.of(
+                                        TicketDto.builder()
+                                                .ticketType("Adult")
+                                                .quantity(1)
+                                                .totalCost(25.0)
+                                                .build(),
+                                        TicketDto.builder()
+                                                .ticketType("Children")
+                                                .quantity(1)
+                                                .totalCost(5.0)
+                                                .build(),
+                                        TicketDto.builder()
+                                                .ticketType("Senior")
+                                                .quantity(1)
+                                                .totalCost(17.5)
+                                                .build(),
+                                        TicketDto.builder()
+                                                .ticketType("Teen")
+                                                .quantity(1)
+                                                .totalCost(12.0)
+                                                .build()
+                                ))
+                                .totalCost(59.5)
                                 .build()
-
                 )
         );
     }
