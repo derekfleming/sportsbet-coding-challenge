@@ -2,6 +2,7 @@ package com.derekfleming.sportsbetchallenge.domain.pricing.strategies;
 
 import com.derekfleming.sportsbetchallenge.domain.model.Customer;
 import com.derekfleming.sportsbetchallenge.domain.model.Ticket;
+import com.derekfleming.sportsbetchallenge.domain.model.TicketType;
 import com.derekfleming.sportsbetchallenge.domain.pricing.PricingStrategy;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,6 @@ public class TeenPricingStrategy implements PricingStrategy {
 
     @Override
     public Ticket getTicket(Customer customer) {
-        return null;
+        return Ticket.builder().ticketType(TicketType.TEEN).cost(12.0).build();
     }
 }
