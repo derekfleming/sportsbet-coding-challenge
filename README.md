@@ -13,7 +13,7 @@ sportsbet-coding-challenge
 - Execute jar
   - `java -jar /target/sportsbet-challenge.jar`
 - See all available endpoints
-  - `http://localhost:8080/api-docs/swagger-ui.html`
+  - `http://localhost:8080/swagger-ui.html`
 
 ## General Notes
 
@@ -25,5 +25,5 @@ sportsbet-coding-challenge
 
 ### Limitations
 
-- Extensive error handling has not been implemented, the app will generally return empty for simple invalid data (e.g negative ages, missing data, etc.)
-  - Unexpected exceptions will be handled by Spring's default implementation
+- Extensive error handling has not been implemented
+  - Exceptions will be handled by Spring's default implementation
