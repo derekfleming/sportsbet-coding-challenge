@@ -56,6 +56,8 @@ class TransactionControllerTest {
                                 .build(),
                         TransactionResponse.builder()
                                 .transactionId(1)
+                                .tickets(List.of())
+                                .totalCost(0.0)
                                 .build()),
                 Arguments.of(
                         TransactionRequest.builder()
