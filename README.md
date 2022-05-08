@@ -8,10 +8,10 @@ sportsbet-coding-challenge
 
 ## Running locally
 
-- Compile
-  - `mvn compile`
+- Package
+  - `mvn package`
 - Execute jar
-  - `java -jar /target/sportsbet-challenge.jar`
+  - `java -jar target/sportsbet-challenge-0.0.1-SNAPSHOT.jar`
 - See all available endpoints
   - `http://localhost:8080/swagger-ui.html`
 
