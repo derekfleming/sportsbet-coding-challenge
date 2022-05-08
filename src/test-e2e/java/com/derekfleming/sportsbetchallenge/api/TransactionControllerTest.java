@@ -1,5 +1,7 @@
 package com.derekfleming.sportsbetchallenge.api;
 
+import com.derekfleming.sportsbetchallenge.api.dto.CustomerDto;
+import com.derekfleming.sportsbetchallenge.api.dto.TicketDto;
 import com.derekfleming.sportsbetchallenge.api.dto.TransactionRequest;
 import com.derekfleming.sportsbetchallenge.api.dto.TransactionResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,7 +32,7 @@ class TransactionControllerTest {
     private MockMvc mockMvc;
 
     @ParameterizedTest
-    @ArgumentsSource(ValidArgumentsProvider.class)
+    @MethodSource("validArguments")
     public void controllerReturnsExpectedResponse(TransactionRequest input, TransactionResponse expected) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -44,20 +47,52 @@ class TransactionControllerTest {
         assertEquals(expected, actual);
     }
 
-    static class ValidArgumentsProvider implements ArgumentsProvider {
+    private static Stream<Arguments> validArguments() {
+        return Stream.of(
+                Arguments.of(
+                        TransactionRequest.builder()
+                                .transactionId(1)
+                                .customers(List.of())
+                                .build(),
+                        TransactionResponse.builder()
+                                .transactionId(1)
+                                .build()),
+                Arguments.of(
+                        TransactionRequest.builder()
+                                .transactionId(1)
+                                .customers(List.of(
+                                        CustomerDto.builder()
+                                                .name("John Smith")
+                                                .age(70)
+                                                .build(),
+                                        CustomerDto.builder()
+                                                .name("Jane Doe")
+                                                .age(5)
+                                                .build(),
+                                        CustomerDto.builder()
+                                                .name("Bob Doe")
+                                                .age(6)
+                                                .build()
+                                ))
+                                .build(),
+                        TransactionResponse.builder()
+                                .transactionId(1)
+                                .tickets(List.of(
+                                        TicketDto.builder()
+                                                .ticketType("Children")
+                                                .quantity(2)
+                                                .totalCost(10.00)
+                                                .build(),
+                                        TicketDto.builder()
+                                                .ticketType("Senior")
+                                                .quantity(1)
+                                                .totalCost(17.5)
+                                                .build()
+                                ))
+                                .totalCost(27.5)
+                                .build()
 
-        @Override
-        public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
-            return Stream.of(
-                    Arguments.of(
-                            TransactionRequest.builder()
-                                    .transactionId(1)
-                                    .customers(List.of())
-                                    .build(),
-                            TransactionResponse.builder()
-                                    .transactionId(1)
-                                    .build())
-            );
-        }
+                )
+        );
     }
 }

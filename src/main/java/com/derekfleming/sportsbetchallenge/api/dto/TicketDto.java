@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class TicketDto {
     private String ticketType;
     private Integer quantity;
-    private Float totalCost;
+    private Double totalCost;
 }

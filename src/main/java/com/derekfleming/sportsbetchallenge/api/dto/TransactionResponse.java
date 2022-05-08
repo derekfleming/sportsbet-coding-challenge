@@ -14,4 +14,5 @@ import java.util.List;
 public class TransactionResponse {
     private Integer transactionId;
     private List<TicketDto> tickets;
+    private Double totalCost;
 }
