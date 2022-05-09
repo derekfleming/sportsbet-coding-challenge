@@ -1,5 +1,7 @@
 sportsbet-coding-challenge
 
+Submission by Derek Fleming
+
 # Getting started
 
 ## Running tests
@@ -14,6 +16,7 @@ sportsbet-coding-challenge
   - `java -jar target/sportsbet-challenge-0.0.1-SNAPSHOT.jar`
 - See all available endpoints
   - `http://localhost:8080/swagger-ui.html`
+  - Main entry point for challenge description is `POST /transactions`
 
 ## General Notes
 
